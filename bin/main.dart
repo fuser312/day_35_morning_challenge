@@ -55,6 +55,11 @@ try {
   else if (item == "DUP") {
       stack.add(stack[0]);
     }
+
+    else if (item == "POP") {
+      stack.removeLast();
+    }
+
     else if (item == "") {
       return 0;
     }
