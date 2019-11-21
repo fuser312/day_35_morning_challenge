@@ -16,6 +16,8 @@
 //  Any other instruction (for example, a letter) should result in the value
 //  "Invalid instruction: [instruction]"
 
+import 'package:test/test.dart';
+
 /// Examples
 //  stackCalc("") ➞ 0
 //  stackCalc("5 6 +") ➞ 11
@@ -23,5 +25,75 @@
 //  stackCalc("6 5 5 7 * - /") ➞ 5
 //  stackCalc("x y +") ➞ Invalid instruction: x
 
+
+
+
+dynamic stackCalc(String args){
+try {
+
+  List newList = args.split(" ");
+  List <int> stack = [];
+
+  for (dynamic item in newList) {
+    if (item == "") {
+      return 0;
+    }
+
+    if ((item == "+" || item == "-" || item == "*" ||
+        item == "/") && stack.length >= 2) {
+      int temp = performOperation(
+          stack[stack.length - 1], stack[stack.length - 2], item);
+      stack.removeLast();
+      stack.removeLast();
+      stack.add(temp);
+    }
+    else if((item == "+" || item == "-" || item == "*" ||
+        item == "/") && stack.length < 2){
+      continue;
+    }
+
+  else if (item == "DUP") {
+      stack.add(stack[0]);
+    }
+    else if (item == "") {
+      return 0;
+    }
+    else {
+      item = int.parse(item);
+      stack.add(item);
+    }
+  }
+
+ return stack.last;
+
+
+}
+on FormatException{
+  return "Invalid Instructions";
+}
+}
+
+int performOperation(int first, int second, String operator){
+  if(operator == "+"){
+    return first + second;
+  }
+  else if(operator == "-"){
+    return first - second;
+  }
+  else if(operator == "/"){
+    return first~/second;
+  }
+  else if(operator == "*"){
+    return first * second;
+  }
+}
+
 main() {
+
+  print(stackCalc("5 6 +"));
+  print(stackCalc("3 DUP +"));
+  print(stackCalc("6 5 5 7 * - /"));
+  print(stackCalc("x y +"));
+  print(stackCalc("5 +"));
+  print(stackCalc(""));
 }
