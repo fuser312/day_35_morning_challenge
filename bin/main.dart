@@ -87,21 +87,6 @@ on FormatException{
 }
 }
 
-int performOperation(int first, int second, String operator){
-  if(operator == "+"){
-    return first + second;
-  }
-  else if(operator == "-"){
-    return first - second;
-  }
-  else if(operator == "/"){
-    return first~/second;
-  }
-  else if(operator == "*"){
-    return first * second;
-  }
-}
-
 main() {
 
   print(stackCalc("5 6 +"));
