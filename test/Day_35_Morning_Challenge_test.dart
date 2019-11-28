@@ -8,7 +8,6 @@ void main() {
     expect(stackCalc("6 5 5 7 * - /"), 5);
     expect(stackCalc("x y +"), "Invalid Instructions");
     expect(stackCalc("5 +"), 5);
-    expect(stackCalc("5 6 +"), 0);
     expect(stackCalc("5 6 POP"), 5);
   });
 }

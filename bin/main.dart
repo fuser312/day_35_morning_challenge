@@ -39,18 +39,32 @@ try {
       return 0;
     }
 
-    if ((item == "+" || item == "-" || item == "*" ||
-        item == "/") && stack.length >= 2) {
-      int temp = performOperation(
-          stack[stack.length - 1], stack[stack.length - 2], item);
-      stack.removeLast();
-      stack.removeLast();
-      stack.add(temp);
-    }
-    else if((item == "+" || item == "-" || item == "*" ||
-        item == "/") && stack.length < 2){
-      continue;
-    }
+    if (item == '+') {
+      if (stack.length >= 2) {
+        var last = stack.removeLast();
+        var secondLast = stack.removeLast();
+        stack.add(last + secondLast);
+      }
+    
+    } else if (item == '-') {
+      if (stack.length >= 2) {
+        var last = stack.removeLast();
+        var secondLast = stack.removeLast();
+        stack.add(last - secondLast);
+      }
+    } else if (item == '*') {
+      if (stack.length >= 2) {
+        var last = stack.removeLast();
+        var secondLast = stack.removeLast();
+        stack.add(last * secondLast);
+      }
+    } else if (item == '/') {
+      if (stack.length >= 2) {
+        var last = stack.removeLast();
+        var secondLast = stack.removeLast();
+        stack.add(last ~/ secondLast);
+      }
+    } 
 
   else if (item == "DUP") {
       stack.add(stack[0]);
@@ -59,13 +73,8 @@ try {
     else if (item == "POP") {
       stack.removeLast();
     }
-
-    else if (item == "") {
-      return 0;
-    }
     else {
-      item = int.parse(item);
-      stack.add(item);
+      (stack.add(int.parse(item)));
     }
   }
 
